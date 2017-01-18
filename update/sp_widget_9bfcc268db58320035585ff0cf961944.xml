@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($window,$scope,$timeout,$location) {
+  /* widget controller */
+  var c = this;
+	$scope.olShow = false;
+	$scope.sptGrpFaces = false;
+
+	$scope.toggleFaces = function(ev) {
+		$scope.sptGrpFaces = !$scope.sptGrpFaces;
+	}
+	/* Capture the Click of a Emoji Face */
+	$scope.clickFace = function(ev) {
+		$scope.toggleShow(ev.toElement.id,true);
+  };
+	$scope.clickPhone = function(ev) {
+		var ph = angular.element(document.getElementById(ev.toElement.id));
+		$window.open("callto:" + formatPhone(ph.data('id')),"_self");
+		$scope.toggleShow(ev.toElement.id.substr(0,3),false);
+	};
+	$scope.openChat = function(ev) {
+		var msg = angular.element(document.getElementById(ev.toElement.id));
+		///$c.do#/with/[user_sys_id]
+		$window.open("$c.do#/with/" + msg.data('id'), "_self");
+		$scope.toggleShow(ev.toElement.id.substr(0,3),false);
+	};	
+  $scope.clickClose = function(ev) {
+		$scope.toggleShow(ev.toElement.id.substr(0,3),false);
+	};	
+  $scope.toggleShow = function(elID,show) {
+		var f = angular.element(document.getElementById(elID));
+		var ph = angular.element(document.getElementById(elID+"ph"));
+		var msg = angular.element(document.getElementById(elID+"msg"));
+		var cls = angular.element(document.getElementById(elID+"cls"));
+		if(show){
+			f.removeClass('cbw-face').addClass('cbw-face-ontop');
+			msg.removeClass('cbw-hidden').addClass('cbw-msg').addClass('cbw-ontop');
+			ph.removeClass('cbw-hidden').addClass('cbw-phone').addClass('cbw-ontop');
+			cls.removeClass('close-hidden').addClass('cbw-close').addClass('cbw-ontop');
+		}else{
+			f.removeClass('cbw-face-ontop').addClass('cbw-face');
+			ph.removeClass('cbw-ontop').removeClass('cbw-msg').addClass('cbw-hidden');
+			msg.removeClass('cbw-ontop').removeClass('cbw-phone').addClass('cbw-hidden');
+			cls.removeClass('cbw-ontop').removeClass('cbw-close').addClass('cbw-hidden');
+		}
+		$scope.olShow = show;
+	};	
+	
+	//for each element that is classed as 'pull-down', set its margin-top to the difference between its own height and the height of its parent
+	$('.pull-down').each(function() {
+		var $this=$(this);
+		$this.css('margin-top', $this.parent().height()-$this.height())
+	});
+	
+	angular.forEach(c.data.users, function(el,i) {
+	  var f = angular.element(document.getElementById("sg"+(1+i)));
+		var msg = angular.element(document.getElementById("sg"+(1+i)+"msg"));
+		var ph = angular.element(document.getElementById("sg"+(1+i)+"ph"));
+		f.attr('src', el.photo);
+		f.attr('title',el.name);
+		msg.attr('data-id',el.id.toString())
+		ph.attr('data-id',el.phone.toString())
+	});
+	
+	function formatPhone(s) {
+    var s2 = (""+s).replace(/\D/g, '');
+    var m = s2.match(/^(\d{3})(\d{3})(\d{4})$/);
+    return (!m) ? null : "" + m[1] + m[2] + m[3];
+  };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.cbw-bg {
+	max-width: 365px;
+  min-height: 195px;
+	max-height: 222px;
+  padding-top: 7px;
+  z-index: 100;
+}
+.cbw-box {
+  width: 100%;
+	min-width: 343px;
+	min-height: 195px;
+	font-family: SourceSansPro;
+	font-size: 15px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.13;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  text-align: center;
+  position:relative;
+  z-index: 101;
+}
+.cbw-title {
+	color: #343d47;
+}
+.cbw-faces{
+  padding-top: 10px;
+  min-height: 50px;
+  position:relative;
+}
+.col-xs-3{
+	padding: 0;
+  min-height: 38px;
+}
+.cbw-face {
+	width: 38px;
+	height: 38px;
+  margin-left: 0px;
+  cursor: pointer;
+  position:relative;
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  z-index: 102 !important;
+}
+.cbw-face-ontop {
+	width: 38px;
+	height: 38px;
+  margin-left: 3px;
+  position:relative;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #ff6f00;
+  z-index: 201 !important;
+}
+.cbw-hidden {
+	width: 0px;
+	height: 0px;
+  margin: 0;
+  position:relative;
+  z-index: 101; 
+}
+.cbw-ontop {
+	width: 25px;
+	height: 25px;
+  position:absolute;
+  z-index: 200 !Important;
+}
+.cbw-msg {
+  margin-top: -28px;
+  margin-left: 10px;  
+}
+.cbw-phone {
+  margin-top: -13px;
+  margin-left: -20px;  
+}
+.cbw-close {
+  width: 18px;
+  height: 18px;
+  margin-top: 20px;
+  margin-left: -20px;
+}
+.cbw-bubblechat {
+	width: 27px;
+	height: 22px;
+	object-fit: contain;
+  cursor: pointer;
+}
+
+.cbw-supportgroup {
+	width: 87px;
+	height: 18px;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	color: #81878e;
+}
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border-radius: 5px;
+    background-color:rgba(0, 0, 0, 0.45);
+    z-index:103;
+}
+.animate-show-hide.ng-hide {
+  opacity: 0;
+}
+.animate-show-hide.ng-hide-add,
+.animate-show-hide.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>chatbubls</id>
+        <internal>false</internal>
+        <link/>
+        <name>chatbubls</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+	data.users = [];
+	data.limit = 3;
+			
+	var usgr = new GlideRecord('sys_user_group');    
+	usgr.addQuery('name', 'SupportGroup');    
+	usgr.query();
+	
+  if (usgr.next()){
+    var grmem = new GlideRecord('sys_user_grmember');    
+		grmem.addQuery('group', usgr.sys_id);    
+		grmem.query();
+		
+		while (grmem.next()){ 
+			var usr = new GlideRecord('sys_user');    
+		  usr.addQuery('sys_id',grmem.user.toString());    
+			usr.query();
+			if(usr.next()){
+				var user = {
+					'id': grmem.user.toString(),
+					'name': usr.user_name.getDisplayValue(),
+					'photo': usr.photo.getDisplayValue(),
+					'phone': usr.phone.getDisplayValue()
+				}
+			  data.users.push(user);	
+			}
+		} 
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-10 15:51:21</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9bfcc268db58320035585ff0cf961944</sys_id>
+        <sys_mod_count>367</sys_mod_count>
+        <sys_name>chatbubls</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>sp_widget_9bfcc268db58320035585ff0cf961944</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-13 18:52:49</sys_updated_on>
+        <template><![CDATA[<div class='cbw-bg' id='chatbubls'>
+  <div class='cbw-box'>
+  <div class='row'>
+    <div class='col-xs-12'>Stuff Here</div>
+  </div>
+  <div class='pull-down'>
+    <div class='row'>
+      <div class='col-xs-7'>Other Stuff Here</div>
+      <div class='col-xs-5'><img class='cbw-bubblechat' src="sptgrp_green.png" ng-click="toggleFaces($event)"/><span class='cbw-supportgroup'>Support Group</span></div>
+    </div>
+    <div class='row cbw-faces animate-show-hide' ng-show='sptGrpFaces'>
+      <div class='col-xs-3'>
+        <img class='cbw-hidden' id='sg1cls' ng-click="clickClose($event)" src="xClose.png"/>
+        <img class='cbw-hidden' id='sg1ph' ng-click="clickPhone($event)" src="phone_orange.png"/>
+        <img class='cbw-hidden' id='sg1msg' ng-click="openChat($event)" src="msg_orange.png"/>
+        <img class='cbw-face' id='sg1' ng-click="clickFace($event)" src=""/>
+      </div>
+      <div class='col-xs-3'>
+        <img class='cbw-hidden' id='sg2cls' ng-click="clickClose($event)" src="xClose.png"/>
+        <img class='cbw-hidden' id='sg2ph' ng-click="clickPhone($event)" src="phone_orange.png"/>
+        <img class='cbw-hidden' id='sg2msg' ng-click="openChat($event)" src="msg_orange.png"/>
+        <img class='cbw-face' id='sg2' ng-click="clickFace($event)" src=""/>
+      </div>
+      <div class='col-xs-3'>
+        <img class='cbw-hidden' id='sg3cls' ng-click="clickClose($event)" src="xClose.png"/>
+        <img class='cbw-hidden' id='sg3ph' ng-click="clickPhone($event)" src="phone_orange.png"/>
+        <img class='cbw-hidden' id='sg3msg' ng-click="openChat($event)" src="msg_orange.png"/>
+        <img class='cbw-face' id='sg3' ng-click="clickFace($event)" src=""/>
+      </div>
+      <div class='col-xs-3'>
+        <img class='cbw-hidden' id='sg4cls' ng-click="clickClose($event)" src="xClose.png"/>
+        <img class='cbw-hidden' id='sg4ph' ng-click="clickPhone($event)" src="phone_orange.png"/>
+        <img class='cbw-hidden' id='sg4msg' ng-click="openChat($event)" src="msg_orange.png"/>
+				<img class='cbw-face' id='sg4' ng-click="clickFace($event)" src=""/>
+      </div>
+    </div>
+  </div>
+  <div class='overlay animate-show-hide' ng-show='olShow'></div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

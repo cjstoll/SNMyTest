@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>Service Portal</category>
+        <format>png</format>
+        <height>24</height>
+        <image/>
+        <name>msg_orange.png</name>
+        <size_bytes>382</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-13 16:17:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a99f6565db50320035585ff0cf9619d2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>msg_orange.png</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>db_image_a99f6565db50320035585ff0cf9619d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-13 16:17:49</sys_updated_on>
+        <thumbnail/>
+        <width>24</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#fedec6</average_image_color>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <image_height>24</image_height>
+        <image_width>24</image_width>
+        <size_bytes>382</size_bytes>
+        <size_compressed>405</size_compressed>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-13 16:17:49</sys_created_on>
+        <sys_id>20dfa565db50320035585ff0cf9619ea</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-13 16:17:49</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>a99f6565db50320035585ff0cf9619d2</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="20dfa565db50320035585ff0cf9619ea">20dfa565db50320035585ff0cf9619ea</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-13 16:17:49</sys_created_on>
+        <sys_id>28dfa565db50320035585ff0cf9619ea</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>AX4Bgf6JUE5HDQoaCgAAAA1JSERSAAAAGAAAABgIBgAAAOB3PfgAAAFFSURBVHjaY2DAA/73MugDcf3/Hob1/3oY9iNjkBhYDqiGgVTwv4/BHmxIPsN/YjBYLVAPcYaDXEWkwRgYqJd2hhOyBBim8WDvrs75/+/eMeLwjibslgDNQjdcHh6eQI3Egn/vHuH2CdBMZAvW08CC9YikiJwiyLDg3+LY///Orfz/b34YenzoM/zvZuin2IJ9vRD+vaOoFgDNZkBP75RZcAwjfzBgZBoqWgDCA2vBv6eXiMoHZFnw7+jM///yiCyL8FmALZJhhv9bVwBJfoTwy5t4Ihk9mS5LgrscpJkUgOEDUDIFFbM4vT7VhbDrr23HbQGsCAfadJ6SEvTftnpMC4BmolQwlBbTIEtQLECvgKhRF/yb6UOgTuhmmE9xhQM0A3+tBq14yMLoFQ1OS7oZ/EmKeJBaoB7SWxcgi5AqI2yVCiGDARCLcSiEVGPOAAAAAElFTkSuQmCCFFhdj34BAAA=</data>
+        <length>528</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="20dfa565db50320035585ff0cf9619ea">20dfa565db50320035585ff0cf9619ea</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-13 16:17:49</sys_created_on>
+        <sys_id>a8dfa565db50320035585ff0cf9619ea</sys_id>
+    </sys_attachment_doc>
+</record_update>

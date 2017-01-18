@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph>group</glyph>
+        <id/>
+        <order>2</order>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">6cc8a193d7333100a9ad1e173e24d4de</sp_column>
+        <sp_widget display_value="sn_grpspt">4dbf5f7ddb58320035585ff0cf961954</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-16 18:41:45</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>815d29a6db98320035585ff0cf96192b</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Support Group</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>sp_instance_815d29a6db98320035585ff0cf96192b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-16 19:17:33</sys_updated_on>
+        <title>Support Group</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"sptgrpname": {
+		"value": "",
+		"displayValue": ""
+	},
+	"groupchat": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=815d29a6db98320035585ff0cf96192b"/>
+</record_update>

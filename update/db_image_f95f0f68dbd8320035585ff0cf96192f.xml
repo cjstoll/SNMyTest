@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>Service Portal</category>
+        <format>png</format>
+        <height>48</height>
+        <image/>
+        <name>xClose.png</name>
+        <size_bytes>337</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-10 20:41:27</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>f95f0f68dbd8320035585ff0cf96192f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>xClose.png</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>db_image_f95f0f68dbd8320035585ff0cf96192f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-10 20:41:35</sys_updated_on>
+        <thumbnail/>
+        <width>48</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#ffffff</average_image_color>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <image_height>48</image_height>
+        <image_width>48</image_width>
+        <size_bytes>337</size_bytes>
+        <size_compressed>360</size_compressed>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-10 20:41:35</sys_created_on>
+        <sys_id>3e6f0368dbd8320035585ff0cf961991</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-10 20:41:35</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>f95f0f68dbd8320035585ff0cf96192f</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="3e6f0368dbd8320035585ff0cf961991">3e6f0368dbd8320035585ff0cf961991</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-10 20:41:35</sys_created_on>
+        <sys_id>7e6f0368dbd8320035585ff0cf961991</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>AVEBrv6JUE5HDQoaCgAAAA1JSERSAAAAMAAAADAIBgAAAFcC+YcAAAEYSURBVHja7ZkxDoMwDEVJD9G5N+UiwNm4Q4ZMiGKJIZVSRIL97Uj+Uhek8N8bSgwZBo/H4zGZlNJn27b1+C3jOL7Q/dRJ3cRALFWLY4xvWrifoRsdlwMaPutfianmHuFYNO1ZgBIhhz+7p5buksQsLMEGryFBXTMnPFJCDB4hIQ4vKQGDl5CAw3NKqMFzSKjDP5EwA98iYQ6+RsIs/B0J8/CXEr3A/5XoCf5Sohf44h8WNIrLwfciUXzaKLwUsU+VwbrEnee8WYmaTcqcRMsOa0biyXigLsEx26hJcA5mcAmJqRImUYKX/KzCKiFeINmBgBfrQsKzd2rA83UXDjjQu+WPRMsBR37EpDWvhPOduv6IyePxeGD5AtVyEo9ypms2AAAAAElFTkSuQmCCRZX711EBAAA=</data>
+        <length>468</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="3e6f0368dbd8320035585ff0cf961991">3e6f0368dbd8320035585ff0cf961991</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-10 20:41:35</sys_created_on>
+        <sys_id>fe6f0368dbd8320035585ff0cf961991</sys_id>
+    </sys_attachment_doc>
+</record_update>

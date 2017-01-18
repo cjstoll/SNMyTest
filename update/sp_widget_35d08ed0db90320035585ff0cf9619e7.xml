@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope,$timeout) {
+  /* widget controller */
+  var c = this;
+	$scope.ewShow = 0;
+
+	/* Capture the Click of a Emoji Face */
+	$scope.clickMe = function(event) {
+		var elID = 0;
+		if(event.target){ elID = event.target.id
+		}else{ elID = event.toElement.id }
+		/* 
+			- Add some post back for capturing the data -
+			clickEvent.toElement.id > happy|neutral|sad;
+		*/
+		
+		// Toggle the panels to show the thank you / error msg
+		// Will wrap this within the promise result of the post back
+		// if{} is only here to show the different panels
+		
+		if(/sad/.test(elID)){
+		  //If promise is rejected / errors use -
+		  $scope.ewShow = 2;	
+		}else{
+			$scope.ewShow = 1;
+		  $timeout( function(){ $scope.hideWidget(); }, 3000);
+		}
+  };
+	
+	$scope.hideWidget = function(){
+		var ew = angular.element(document.querySelector("#emojiWidget"));
+		ew.slideUp().fadeTo('slow', 0);
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.ew-bg {
+  margin: 0px auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top:7px;
+}
+.ew-box {
+  width: 100%;
+	min-width: 320px;
+	font-family: SourceSansPro;
+	font-size: 15px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.13;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  text-align: center;
+}
+.ew-thankyou, .ew-err {
+  display: table;
+}
+.ew-cell{
+  display: table-cell;
+  vertical-align:middle;
+}
+.ew-err .ew-cell{
+  color: #ff0000;
+}
+.ew-title {
+	width: 170px;
+	height: 17px;
+	color: #343d47;
+}
+.ew-faces{
+  padding-top:10px;
+}
+.ew-face {
+	width: 41.3px;
+	height: 41.3px;
+  cursor: pointer;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>emojirating</id>
+        <internal>false</internal>
+        <link/>
+        <name>emojirating</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-09 20:19:47</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>35d08ed0db90320035585ff0cf9619e7</sys_id>
+        <sys_mod_count>138</sys_mod_count>
+        <sys_name>emojirating</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>sp_widget_35d08ed0db90320035585ff0cf9619e7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-16 19:14:51</sys_updated_on>
+        <template><![CDATA[<div class='ew-bg' id='emojiWidget'>
+ <div class='ew-box' ng-show='ewShow==0'>
+  <span class='ew-title'>How effective was this fix?</span>
+  <div class='row ew-faces'>
+    <div class='col-xs-2'></div>
+    <div class='col-xs-2'><img class='ew-face' id='ew-happy' ng-click="clickMe($event)" src="ew-happy.png"/></div>
+    <div class='col-xs-1'></div>
+    <div class='col-xs-2'><img class='ew-face' id='ew-neutral' ng-click="clickMe($event)" src="ew-neutral.png"/></div>
+    <div class='col-xs-1'></div>
+    <div class='col-xs-2'><img class='ew-face' id='ew-sad' ng-click="clickMe($event)" src="ew-sad.png"/></div>
+    <div class='col-xs-2'></div>
+  </div>
+ </div>
+ <div class='ew-box ew-thankyou' ng-show='ewShow==1'>
+  <span class='ew-title ew-cell'>Thank You! for your feedback.</span>
+ </div>
+ <div class='ew-box ew-err' ng-show='ewShow==2'>
+  <span class='ew-title ew-cell'>Processing error occurred.</span>
+ </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

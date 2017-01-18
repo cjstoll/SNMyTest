@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($scope, $location) {
+	$scope.showFullInfoCollegues = false;
+	$scope.showFullInfoReports = false;
+	$scope.showMyProfile = false;
+
+	$scope.$on('finishedChanged', function(event, data) {
+      $scope.myManager = data.profile.manager;
+      $scope.teamMembers = data.profile.members;
+			$scope.directReports = data.profile.direct_reports;
+			if(data.profile.user && data.profile.user.sys_id) { //if user exists, then this isn't 'my' profile. It's someone elses.
+				$scope.showMyProfile = true;
+				$scope.userID = data.profile.user.sys_id;
+			}
+	});
+	
+	$scope.openProfile = function(user) {
+		$location.search("id=user_profile&sys_id=" + user.sys_id); 
+	};
+	
+	$scope.showTeamWidget = function() {
+		return ($scope.myManager && $scope.myManager.sys_id) ||
+			($scope.teamMembers && $scope.teamMembers.length > 1) ||
+			($scope.directReports && $scope.directReports.length > 0);
+	};
+	
+	$scope.updateList = function(variable, value) {
+		if (variable == "showFullInfoReports")
+			$scope.showFullInfoReports = value;
+		else if (variable == "showFullInfoCollegues")
+			$scope.showFullInfoCollegues = value;
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.row.info-row:hover {
+	background-color: #f0f0f0;
+}
+
+a.widget-button {
+    float: right;
+    clear: both;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: #B9B9B9;
+    color: #fff;
+    padding: 3px 10px;
+    font-weight: 100;
+}
+ 
+a.widget-button:hover {
+	background-color: #428bca;
+}
+
+.row.info-row&gt;div {
+	height: 35px;
+	cursor: pointer;
+    padding-top: 9px;
+}
+
+.team_header {
+	font-size: 15px;
+	margin: 20px 0 5px 0;
+	color: #428BCA;
+}
+
+.more_link {
+	font-size: 90%;
+    padding: 10px;
+}
+
+.hide-element {
+	visibility: hidden;
+}
+
+.fa-2x {
+  font-size: 1.5em;
+  margin-top: -3px;
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>glyph,table,field_list,maximum_entries,display_field,order_by,order_direction</field_list>
+        <has_preview>false</has_preview>
+        <id>my-sptgrp</id>
+        <internal>false</internal>
+        <link/>
+        <name>my-sptgrp</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[data.limitTo = 5;
+data.user_id = gs.getUserID();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-11 13:59:22</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>b0fcbe30db10320035585ff0cf9619f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>my-sptgrp</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>sp_widget_b0fcbe30db10320035585ff0cf9619f1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-11 13:59:22</sys_updated_on>
+        <template><![CDATA[<sp-panel rect="rect" title="'${Team}'" ng-if="showTeamWidget()">
+
+	<div id="manager" ng-if="myManager && myManager.sys_id">
+		<h5 ng-if="myManager.name && !showMyProfile" class="team_header m-t-none">${My Manager}</h5>
+		<h5 ng-if="myManager.name && showMyProfile" class="team_header m-t-none">${Manager}</h5>
+
+		<div class="row info-row">
+			<div class="col-xs-2" ng-click="openProfile(myManager)">
+				<span class="navbar-avatar">
+					<sn-avatar class="avatar-small-medium" primary="myManager.sys_id" show-presence="false" />
+				</span>
+			</div>
+			<div class="col-xs-7" ng-click="openProfile(myManager)">{{myManager.name}}</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !myManager.phone}">
+				<a href="tel:{{myManager.phone}}">
+                  <fa name="phone" size="2"></fa>
+				</a>
+			</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !myManager.email}">
+				<a href="mailto:{{myManager.email}}">
+					<fa name="envelope" size="2"></fa>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="colleagues" ng-if="teamMembers && teamMembers.length > 1">
+		<h5 ng-if="teamMembers.length > 0 && !showMyProfile" class="team_header">${My Coworkers}</h5>
+		<h5 ng-if="teamMembers.length > 0 && showMyProfile" class="team_header">${Coworkers}</h5>
+
+		<div class="row info-row" ng-repeat="member in teamMembers | filter:{sys_id: '!' + data.user_id} | limitTo: showFullInfoCollegues ? teamMembers.length : data.limitTo">
+			<div class="col-xs-2" ng-click="openProfile(member)">
+				<span class="navbar-avatar">
+					<sn-avatar class="avatar-small-medium" primary="member.sys_id" show-presence="false" />
+				</span>
+			</div>
+			<div class="col-xs-7" ng-click="openProfile(member)">{{member['name']}}</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !member.phone}">
+				<a href="tel:{{member.phone}}">
+					<fa name="phone" size="2"></fa>
+				</a>
+			</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !member.email}" style="text-align: right;">
+				<a href="mailto:{{member.email}}">
+					<fa name="envelope" size="2"></fa>
+				</a>
+			</div>
+		</div>
+
+		<div ng-if="teamMembers.length - 1 > data.limitTo" class="pull-right">
+			<a href="javascript:void(0)" class="more_link" ng-if="!showFullInfoCollegues" ng-click="updateList('showFullInfoCollegues',true)">${show all ({{teamMembers.length - 1}})}
+			</a>
+			<a href="javascript:void(0)" class="more_link" ng-if="showFullInfoCollegues" ng-click="updateList('showFullInfoCollegues',false)">${show less}</a>
+		</div>
+
+	</div>
+
+	<div id="direct_reports" ng-if="directReports && directReports.length > 0">
+		<h5 ng-if="directReports.length > 0 && !showMyProfile" class="team_header">${My Direct Reports}</h5>
+		<h5 ng-if="directReports.length > 0 && showMyProfile" class="team_header">${Direct Reports}</h5>
+
+		<div class="row info-row" ng-repeat="direct_report in directReports | filter:{sys_id: '!' + data.user_id} | limitTo: showFullInfoReports ? directReports.length : data.limitTo">
+			<div class="col-xs-2" ng-click="openProfile(direct_report)">
+				<span class="navbar-avatar">
+					<sn-avatar class="avatar-small-medium" primary="direct_report.sys_id" show-presence="false" />
+				</span>
+			</div>
+			<div class="col-xs-7" ng-click="openProfile(direct_report)">{{direct_report['name']}}</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !direct_report.phone}">
+				<a href="tel:{{direct_report.phone}}">
+					<fa name="phone" size="2"></fa>
+				</a>
+			</div>
+			<div class="col-xs-1" ng-class="{'hide-element': !direct_report.email}" style="text-align: right;">
+				<a href="mailto:{{direct_report.email}}">
+					<fa name="envelope" size="2"></fa>
+				</a>
+			</div>
+		</div>
+
+		<div ng-if="directReports.length > data.limitTo" class="pull-right">
+			<a href="javascript:void(0)" class="more_link" ng-if="!showFullInfoReports" ng-click="updateList('showFullInfoReports',true)">${show all ({{directReports.length}})}</a>
+			<a href="javascript:void(0)" class="more_link" ng-if="showFullInfoReports" ng-click="updateList('showFullInfoReports',false)">${show less}</a>
+		</div>
+
+	</div>
+
+	<a id="my_org_chart" class="widget-button" ng-if="!showMyProfile" href="?id=my_org_chart">
+		<i class="fa fa-sitemap"></i>
+		${my org chart}
+	</a>
+	<a id="my_org_chart" class="widget-button" ng-if="showMyProfile" ng-href="?id=my_org_chart&p={{userID}}">
+		<i class="fa fa-sitemap"></i>
+		${org chart}
+	</a>
+
+</sp-panel>]]></template>
+    </sp_widget>
+</record_update>

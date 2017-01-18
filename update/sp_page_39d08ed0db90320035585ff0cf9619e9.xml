@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <css/>
+        <id>emojirating</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-01-09 20:19:47</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>39d08ed0db90320035585ff0cf9619e9</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>emojirating</sys_name>
+        <sys_package display_value="MyTestApp" source="x_88063_mytestapp">ab05bd1bdbc0320035585ff0cf9619eb</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="MyTestApp">ab05bd1bdbc0320035585ff0cf9619eb</sys_scope>
+        <sys_update_name>sp_page_39d08ed0db90320035585ff0cf9619e9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-01-11 16:58:11</sys_updated_on>
+        <title>Emoji Rating</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=39d08ed0db90320035585ff0cf9619e9"/>
+</record_update>
